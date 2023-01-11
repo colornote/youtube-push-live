@@ -7,6 +7,7 @@ import (
 	"log"
 	"os/exec"
 	"runtime"
+	"strings"
 )
 
 const (
@@ -61,8 +62,7 @@ func push(url, filename string) {
 	// cat *.mp4  | ffmpeg -re -i pipe:0 -c:v copy -c:a aac -f flv rtmp://a.rtmp.youtube.com/live2/xvkt-e9sp-ahh2-17za
 
 	// 拼凑参数集合
-	// url = fmt.Sprintf("\"%s\"", url)
-	cmdArguments := []string{"-re", "-i", filename, "-c:v", "copy", "-c:a", "aac", "-f", "flv", url}
+	cmdArguments := []string{"-re", "-i", filename, "-c:v", "copy", "-c:a", "aac", "-f", "flv", strings.TrimSpace(string(url))}
 
 	// 调用当前系统 cmd 执行 ffmpeg
 	cmd := exec.Command(ffmpeg, cmdArguments...)
