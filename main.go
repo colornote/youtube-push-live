@@ -41,8 +41,8 @@ func main() {
 LOOP:
 	for _, file := range files {
 		push(string(url), "./videos/"+file.Name())
-		goto LOOP
 	}
+	goto LOOP
 
 }
 
